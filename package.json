@@ -1,0 +1,23 @@
+{
+  "name": "vue_blog",
+  "version": "1.0.0",
+  "description": "vue个人博客",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangshengliang-ai/vue-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangshengliang-ai/vue-blog/issues"
+  },
+  "homepage": "https://github.com/wangshengliang-ai/vue-blog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
