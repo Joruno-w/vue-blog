@@ -1,0 +1,79 @@
+.content{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .content-left{
+    width: 65%;
+}
+
+.content .content-right{
+    width: 33%;
+}
+
+.content .content-left .every_day{
+    width: 100%;
+    height: 100px;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 0 0 5px #000;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+@keyframes changeColor{
+    from{
+        color: #0088ef;
+    }
+    25%{
+        color: #00efcd;
+    }
+    50%{
+        color: #51ef09;
+    }
+    75%{
+        color: #ef0098;
+    }
+    to{
+        color: #0088ef;
+    }
+}
+
+@keyframes changeFill{
+    from{
+        fill: #0088ef;
+    }
+    25%{
+        fill: #00efcd;
+    }
+    50%{
+        fill: #51ef09;
+    }
+    75%{
+        fill: #ef0098;
+    }
+    to{
+        fill: #0088ef;
+    }
+}
+
+.content .content-left .every_day a{
+    font-size: 12px;
+    color: #0088ef;
+    animation: changeColor 8s infinite;
+}
+
+.content .content-left .every_day svg{
+    vertical-align: middle;
+    animation: changeFill 8s infinite;
+}
+
+.content .content-left .every_day p{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
