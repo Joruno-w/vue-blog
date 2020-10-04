@@ -5,10 +5,6 @@
     text-decoration: none;
 }
 
-a{
-    color: #fff;
-}
-
 .header{
     height: 50px;
     background-color: #000;
@@ -44,6 +40,10 @@ a{
     height: 50px;
     line-height: 50px;
     text-align: center;
+}
+
+.header .container .nav a{
+    color: #fff;
 }
 
 .header .container .nav a:hover{
