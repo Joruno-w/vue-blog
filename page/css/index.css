@@ -100,7 +100,7 @@
 }
 
 .articleList .article .article-title:hover{
-    color: #003955;
+    color: #337ab7;
 }
 
 .articleList .article .article-content{
@@ -119,4 +119,93 @@
     color: #fff;
 }
 
+.right-module{
+    background-color: #191918;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
 
+.right-module .title{
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #000;
+}
+
+.right-module .title a{
+    color: #0088ef;
+    animation: changeColor 8s infinite;
+}
+
+.right-module .main .tagList{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.right-module .main .tagList .tag{
+    margin:0 10px;
+}
+
+
+.right-module .main .hotList .hot{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #292929;
+}
+
+.right-module .main .hotList .hot a,
+.right-module .main .youlianList .youlian a{
+    color: #fff;
+    font-size: 14px;
+}
+
+.right-module .main .hotList .hot a:hover,
+.right-module .main .comments .comment div:last-child a:hover,
+.right-module .main .youlianList .youlian a:hover,
+.footer ul li a:hover{
+    color: #337ab7;
+}
+
+.right-module .main .comments .comment{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom: 1px solid #292929;
+    font-size: 14px;
+    color: #fff;
+}
+
+.right-module .main .comments .comment div:first-child{
+    display: flex;
+    margin-bottom:7px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.right-module .main .comments .comment div:first-child span:first-child{
+    font-weight: 700;
+}
+.right-module .main .comments .comment div:last-child a{
+    color: #777;
+}
+
+.right-module .main .youlianList .youlian{
+    float: left;
+    line-height: 40px;
+    box-sizing: border-box;
+    width: 50%;
+    height: 40px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #292929;
+    font-size: 14px;
+}
