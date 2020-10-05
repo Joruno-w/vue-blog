@@ -3,7 +3,7 @@ const vm1 = new Vue({
     data: {
         content: 'An animal\'s eyes have the power to speak a great language.'
     },
-    created(){
+    created() {
         //访问接口
     }
 });
@@ -46,8 +46,32 @@ const vm2 = new Vue({
             }
         ]
     },
-    created(){
+    created() {
 
     }
-})
+});
+
+
+const vm3 = new Vue({
+    el: '#randomTag',
+    data: {
+        tags: ['javascript','php','java','c++','python','Ruby','javascript','php','java','c++','python','Ruby','javascript','php','java','c++','python','Ruby']
+    },
+    methods:{
+        getRandom(min,max) {
+            return Math.floor(Math.random() * (max+1 - min) + min);
+        }
+    },
+    computed: {
+        getRandomColor() {
+            return () => `rgba(${this.getRandom(0, 255)},${this.getRandom(0, 255)},${this.getRandom(0, 255)})`;
+        },
+        getRandomSize(){
+            return ()=>`${this.getRandom(10,25)}px`;
+        }
+    },
+    created() {
+
+    }
+});
 

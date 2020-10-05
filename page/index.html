@@ -56,32 +56,14 @@
             </div>
         </div>
         <div class="content-right">
-            <div class="right-module">
+            <div class="right-module" id="randomTag">
                 <div class="title">
                     <a href="/">随机标签云</a>
                 </div>
                 <div class="main">
                     <ul class="tagList">
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
-                        </li>
-                        <li class="tag">
-                            <a href="/">JavaScript</a>
+                        <li class="tag" v-for="(tag,i) in tags" :key="i">
+                            <a href="/" :style="{color: getRandomColor(),fontSize: getRandomSize()}">{{tag}}</a>
                         </li>
                     </ul>
                 </div>
