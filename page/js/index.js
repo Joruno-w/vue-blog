@@ -1,4 +1,4 @@
-const vm1 = new Vue({
+const every_day_vm = new Vue({
     el: '#every_day',
     data: {
         content: 'An animal\'s eyes have the power to speak a great language.'
@@ -8,7 +8,7 @@ const vm1 = new Vue({
     }
 });
 
-const vm2 = new Vue({
+const articleVm = new Vue({
     el: '#articleList',
     data: {
         articleList: [
@@ -52,26 +52,170 @@ const vm2 = new Vue({
 });
 
 
-const vm3 = new Vue({
+const randomTagVm = new Vue({
     el: '#randomTag',
     data: {
-        tags: ['javascript','php','java','c++','python','Ruby','javascript','php','java','c++','python','Ruby','javascript','php','java','c++','python','Ruby']
+        tags: ['javascript', 'php', 'java', 'c++', 'python', 'Ruby', 'javascript', 'php', 'java', 'c++', 'python', 'Ruby', 'javascript', 'php', 'java', 'c++', 'python', 'Ruby']
     },
-    methods:{
-        getRandom(min,max) {
-            return Math.floor(Math.random() * (max+1 - min) + min);
+    methods: {
+        getRandom(min, max) {
+            return Math.floor(Math.random() * (max + 1 - min) + min);
         }
     },
     computed: {
         getRandomColor() {
             return () => `rgba(${this.getRandom(0, 255)},${this.getRandom(0, 255)},${this.getRandom(0, 255)})`;
         },
-        getRandomSize(){
-            return ()=>`${this.getRandom(10,25)}px`;
+        getRandomSize() {
+            return () => `${this.getRandom(10, 25)}px`;
         }
     },
     created() {
 
     }
+});
+
+const hotVm = new Vue({
+    el: '#hot',
+    data: {
+        hots: [
+            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },
+            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },
+            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },
+            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },
+            {
+                title: '使用码云git的webhook实现生产环境代',
+                link: 'http://www.baidu.com'
+            },
+        ]
+    },
+    created() {
+
+    }
+});
+
+
+const commentVm = new Vue({
+   el: '#comment',
+   data: {
+       comments: [
+           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           },
+           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           },           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           },
+           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           },
+           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           },
+           {
+               name: '华云云服务器',
+               date: '[1个月前]',
+               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
+           }
+       ]
+   }
+});
+
+const youlianVm = new Vue({
+   el: '#youlian',
+   data: {
+       youlianList: [
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           },
+           {
+               link: 'http://www.baidu.com',
+               content: '挨踢茶馆'
+           }
+       ]
+   }
 });
 
