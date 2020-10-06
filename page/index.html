@@ -54,6 +54,11 @@
                         发布于{{article.publishDate}} |  浏览：{{article.scan}} | Tags：{{article.tags}}
                     </div>
                 </div>
+                <div class="pager">
+                    <ul>
+                        <li v-for="(item,i) in pageNumList" :key="i" :class="{active: item.text === current}" @click="switchTo(item.page)">{{item.text}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="content-right">

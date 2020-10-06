@@ -241,3 +241,31 @@
     color: #a2a2a2;
 }
 
+.articleList .pager ul{
+    display: inline-block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.articleList .pager ul li{
+    display: inline-block;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #fff;
+    transition: all .3s;
+}
+
+
+.articleList .pager ul li:hover{
+    background-color: #ccc;
+}
+
+.articleList .pager ul li.active{
+    color: #fff;
+    background-color: #000;
+}
+
+

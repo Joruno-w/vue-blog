@@ -15,8 +15,11 @@ const every_day_vm = new Vue({
 const articleVm = new Vue({
     el: '#articleList',
     data: {
-        page: 1,
-        limit: 5,
+        current: 1,
+        limit: 1,
+        count: 100,
+        pageNumList: [],
+        panelNumebr: 10,
         articleList: [
             {
                 id: 1,
@@ -30,10 +33,14 @@ const articleVm = new Vue({
         ]
     },
     methods:{
+        switchTo(page){
+            this.current = page;
+            this.getPage(this.current,this.limit);
+        },
         getPage(page,limit){
             axios.get('/queryBlogByPage',{
                 params: {
-                    page: page - 1,
+                    page,
                     limit
                 }
             }).then(res=>{
@@ -54,10 +61,54 @@ const articleVm = new Vue({
             }).catch(err=>{
                 console.log(err);
             });
+            this.pageNumList = this.generatePager();
+        },
+        generatePager(){
+            const result = [];
+            const page = this.current;
+            const totalPage = this.count;
+            const pageSize = this.limit;
+            result.push({
+                text: '首页',
+                page: 1
+            });
+            if (page > 2){
+                result.push({
+                    text: page - 2,
+                    page: page - 2
+                });
+            }
+            if (page > 1) {
+                result.push({
+                    text: page - 1,
+                    page: page - 1
+                });
+            }
+            result.push({
+                text: page,
+                page
+            });
+            if (this.current + 1 <= parseInt((totalPage + pageSize - 1)/ pageSize)){
+                result.push({
+                    text: page + 1,
+                    page: page + 1
+                });
+            }
+            if (this.current + 2 <= parseInt((totalPage + pageSize - 1)/ pageSize)){
+                result.push({
+                    text: page + 2,
+                    page: page + 2
+                });
+            }
+            result.push({
+                text: '尾页',
+                page: parseInt((totalPage + pageSize - 1)/ pageSize)
+            });
+            return result;
         }
     },
     created() {
-        this.getPage(this.page,this.limit);
+        this.getPage(this.current,this.limit);
     }
 });
 

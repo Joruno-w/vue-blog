@@ -13,8 +13,8 @@ async function insertBlog(title,content,tags,views=0) {
 
 async function queryBlogByPage(page,limit){
     return await blog.findAll({
-        offset: page,
-        limit,
+        offset: (page - 1) * limit,
+        limit: +limit
     });
 }
 

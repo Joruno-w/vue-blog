@@ -4,6 +4,10 @@
     list-style: none;
     text-decoration: none;
 }
+ html,body{
+     height: 100vh;
+     background-color: #eee;
+ }
 
 .header{
     height: 50px;
