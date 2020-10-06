@@ -1,10 +1,14 @@
 const every_day_vm = new Vue({
     el: '#every_day',
     data: {
-        content: 'An animal\'s eyes have the power to speak a great language.'
+        content: ''
     },
     created() {
-        //访问接口
+        axios.get('/queryEveryDay').then(res=>{
+            this.content = res.data[0].content;
+        }).catch(res=>{
+            console.log('error');
+        })
     }
 });
 

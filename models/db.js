@@ -5,4 +5,6 @@ const sequelize = new Sequelize('blog', 'root', '100861', {
     logging: null
 });
 
+
 module.exports = sequelize;
+
