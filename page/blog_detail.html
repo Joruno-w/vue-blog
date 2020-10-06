@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/blog_detail.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="title">
+                <a href="./index.html">我的个人博客|技术博客</a>
+            </div>
+            <ul>
+                <li>
+                    <a href="./index.html">首页</a>
+                </li>
+                <li>
+                    <a href="./sitemap.html">地图</a>
+                </li>
+                <li>
+                    <a href="./about.html">关于</a>
+                </li>
+                <li>
+                    <a href="./guestBook.html">留言</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="请输入关键词查找">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+<div class="content">
+    <div class="content-left">
+        <div class="blog" id="blog_detail">
+            <div class="blog_title">{{title}}</div>
+            <div class="blog_msg">作者: wsl 标签: {{tags}} 发布于: {{publishDate}} 浏览:({{views}})</div>
+            <div class="blog_content" v-html="content"></div>
+        </div>
+    </div>
+    <div class="content-right">
+        <div class="right-module" id="randomTag">
+            <div class="title">
+                <a href="/">随机标签云</a>
+            </div>
+            <div class="main">
+                <ul class="tagList">
+                    <li class="tag" v-for="(tag,i) in tags" :key="i">
+                        <a href="/" :style="{color: getRandomColor(),fontSize: getRandomSize()}">{{tag}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-module">
+            <div class="title">
+                <a href="/">最近热门</a>
+            </div>
+            <div class="main">
+                <ul class="hotList" id="hot">
+                    <li class="hot" v-for="(hot,i) in hots" :key="i">
+                        <a :href="hot.link">{{hot.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-module">
+            <div class="title">
+                <a href="/">最新评论</a>
+            </div>
+            <div class="main">
+                <ul class="comments" id="comment">
+                    <li class="comment" v-for="(comment,i) in comments" :key="i">
+                        <div>
+                            <span>{{comment.name}}</span>
+                            <span>{{comment.date}}</span>
+                        </div>
+                        <div>
+                            <a href="/">{{comment.discuss}}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-module">
+            <div class="title">
+                <a href="/">友情链接</a>
+            </div>
+            <div class="main">
+                <ul class="youlianList" id="youlian">
+                    <li class="youlian" v-for="(youlian,i) in youlianList" :key="i">
+                        <a :href="youlian.link">{{youlian.content}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <ul>
+        <li>
+            <a href="/">C/C++</a>
+        </li>
+        <li>
+            <a href="/">CSS/DIV</a>
+        </li>
+        <li>
+            <a href="/">java</a>
+        </li>
+        <li>
+            <a href="/">javascript</a>
+        </li>
+        <li>
+            <a href="/">Linux</a>
+        </li>
+        <li>
+            <a href="/">Mac</a>
+        </li>
+        <li>
+            <a href="/">PC技术</a>
+        </li>
+        <li>
+            <a href="/">PHP</a>
+        </li>
+        <li>
+            <a href="/">Python</a>
+        </li>
+        <li>
+            <a href="/">Raspberry</a>
+        </li>
+        <li>
+            <a href="/">Ubuntu</a>
+        </li>
+        <li>
+            <a href="/">wordpress</a>
+        </li>
+        <li>
+            <a href="/">关于SEO分享经验</a>
+        </li>
+        <li>
+            <a href="/">听听音乐</a>
+        </li>
+        <li>
+            <a href="/">幽默搞笑</a>
+        </li>
+        <li>
+            <a href="/">建站经验</a>
+        </li>
+        <li>
+            <a href="/">新闻资讯</a>
+        </li>
+        <li>
+            <a href="/">模拟飞行</a>
+        </li>
+        <li>
+            <a href="/">片言碎语</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="/">玩转手机</a>
+        </li>
+        <li>
+            <a href="/">编程基础</a>
+        </li>
+        <li>
+            <a href="/">视频分享</a>
+        </li>
+    </ul>
+    <div>
+        Copyright © 2010-2020 我的个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计
+    </div>
+</footer>
+<script src="./js/index.js"></script>
+<script src="./js/blog_detail.js"></script>
+</body>
+</html>

@@ -54,7 +54,7 @@ const articleVm = new Vue({
                     obj.publishDate = new Date(result[i].createdAt).toLocaleString().split(" ")[0].replace(/\//g,'-');
                     obj.content = result[i].content;
                     obj.id = result[i].id;
-                    obj.link = result[i].id + '';
+                    obj.link = '/blog_detail.html?bid=' + result[i].id;
                     list.push(obj);
                 }
                 this.articleList = list;

@@ -7,6 +7,7 @@ app.post('/editEveryDay',loader.get('/editEveryDay'));
 app.get('/queryEveryDay',loader.get('/queryEveryDay'));
 app.get('/queryBlogByPage',loader.get('/queryBlogByPage'));
 app.post('/editBlog',loader.get('/editBlog'));
+app.get('/queryBlogById',loader.get('/queryBlogById'));
 app.listen(config.port,()=>{
     console.log('服务器已启动！');
 });

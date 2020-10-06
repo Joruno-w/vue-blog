@@ -18,7 +18,12 @@ async function queryBlogByPage(page,limit){
     });
 }
 
+async function queryBlogById(id){
+    return await blog.findByPk(id);
+}
+
 module.exports = {
     insertBlog,
-    queryBlogByPage
+    queryBlogByPage,
+    queryBlogById
 }

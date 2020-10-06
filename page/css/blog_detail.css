@@ -1,0 +1,23 @@
+.blog{
+    width: 95%;
+    text-align: left;
+    padding: 10px 15px;
+    box-shadow: 3px 4px 3px #888888;
+    background-color: #fff;
+}
+
+.blog_title{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.blog_msg{
+    padding: 5px 0 20px 0;
+    border-bottom: 1px solid #888888;
+}
+
+.blog_content{
+    margin-top: 5px;
+    padding: 0 5px;
+}
