@@ -18,6 +18,11 @@ const tagBlogMapping = sequelize.define('tag_blog_mapping',{
         {
             fields: ['blogId'],
             name: 'blog_tag_id'
+        },
+        {
+            fields: ['tagId',"blogId"],
+            name: 'unique_tag_blog_id',
+            unique: true
         }
     ],
     createdAt: true,

@@ -28,7 +28,21 @@
         function submit() {
             const content = $('#editor').html();
             const title = $('#title').val();
-            const tag = $('#tag').val();
+            const tags = $('#tag').val()
+            $.ajax({
+                url: `/editBlog?title=${title}&tags=${tags}`,
+                method: 'POST',
+                data: content,
+                success(result) {
+                    alert(JSON.stringify(result));
+                    $('#editor').html("");
+                    $('#title').val("");
+                    $('#tag').val("");
+                },
+                error(error) {
+                    console.log(error);
+                }
+            });
         }
     </script>
     <style>
