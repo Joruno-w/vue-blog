@@ -10,6 +10,15 @@ async function insertBlog(title,content,tags,views=0) {
     return obj.toJSON();
 }
 
+
+async function queryBlogByPage(page,limit){
+    return await blog.findAll({
+        offset: page,
+        limit,
+    });
+}
+
 module.exports = {
-    insertBlog
+    insertBlog,
+    queryBlogByPage
 }

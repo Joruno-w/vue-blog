@@ -3,6 +3,15 @@ const url = require('url');
 const blogDao = require('../dao/blogDao');
 const tagsDao = require('../dao/tagsDao');
 const tag_blog_mapping = require('../dao/blogTagMappingDao');
+async function queryBlogByPage(req,res){
+    const query = url.parse(req.url,true).query;
+    blogDao.queryBlogByPage(parseInt(query.page),parseInt(query.limit)).then(result=>{
+         res.status(200).send(result);
+    });
+}
+
+path.set('/queryBlogByPage',queryBlogByPage);
+
 async function editBlog(req,res){
     let {title,tags} = url.parse(req.url,true).query;
     tags = tags.replace(/\s/g,'').replace('，',',');
