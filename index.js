@@ -9,6 +9,7 @@ app.get('/queryBlogByPage',loader.get('/queryBlogByPage'));
 app.post('/editBlog',loader.get('/editBlog'));
 app.get('/queryBlogById',loader.get('/queryBlogById'));
 app.get('/addComment',loader.get('/addComment'));
+app.get('/queryRandomCode',loader.get('/queryRandomCode'));
 app.listen(config.port,()=>{
     console.log('服务器已启动！');
 });

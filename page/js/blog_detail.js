@@ -36,10 +36,12 @@ const blogDetail = new Vue({
     }
 });
 
-
 const addComment = new Vue({
     el: '#send_comment',
-    data: {},
+    data: {
+        vcode: '',
+        text: ''
+    },
     methods: {
         handleSubmit() {
             const paramsStr = location.search.includes('?') ? location.search.substring(1).split('&') : '';
@@ -60,15 +62,35 @@ const addComment = new Vue({
             const name = document.getElementsByClassName('comment_name')[0].value;
             const email = document.getElementsByClassName("comment_email")[0].value;
             const content = document.getElementsByTagName("textarea")[0].value;
-            axios.get(`/addComment`,{
-                params: {
-                    bid,
-                    parent,
-                    name,
-                    email,
-                    content
-                }
-            }).then(res=>console.log(res)).catch(err=>console.log(err));
+            const code = document.getElementsByClassName("comment_code")[0];
+            console.log(code.value,this.text);
+            if (code.value !== this.text){
+                alert('验证码输入有误!');
+                code.value = '';
+            }else{
+                axios.get(`/addComment`,{
+                    params: {
+                        bid,
+                        parent,
+                        name,
+                        email,
+                        content
+                    }
+                }).then(res=>{
+                    alert("评论成功！")
+                }).catch(err=>console.log(err));
+            }
+        },
+        handleChangeCode(){
+            axios.get('/queryRandomCode').then(result=>{
+                this.vcode = result.data.data;
+                this.text = result.data.text;
+            }).catch(err=>{
+                console.log(err);
+            })
         }
     },
+    created() {
+        this.handleChangeCode();
+    }
 });

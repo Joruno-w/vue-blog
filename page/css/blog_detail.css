@@ -83,6 +83,13 @@
     margin-bottom: 10px;
 }
 
+.comment_validator span{
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 7px;
+    vertical-align: middle;
+}
+
 .send_comment button{
     width: 50px;
     height: 35px;

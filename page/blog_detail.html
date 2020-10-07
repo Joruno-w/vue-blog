@@ -56,6 +56,7 @@
             </div>
             <div class="comment_validator">
                 <input type="text" placeholder="验证码" class="comment_code">
+                <span v-html="vcode" @click="handleChangeCode"></span>
             </div>
             <button @click="handleSubmit">提交</button>
         </div>
