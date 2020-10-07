@@ -44,6 +44,21 @@
             <div class="blog_msg">作者: wsl 标签: {{tags}} 发布于: {{publishDate}} 浏览:({{views}})</div>
             <div class="blog_content" v-html="content"></div>
         </div>
+        <div class="send_comment" id="send_comment">
+            <div class="comment_title">发表评论</div>
+            <div class="comment_msg">
+                <input type="hidden" value="-1" class="comment_hidden">
+                <input type="text" placeholder="昵称" class="comment_name">
+                <input type="email" placeholder="邮箱" class="comment_email">
+            </div>
+            <div class="comment_content">
+                <textarea placeholder="无意义内容我可能不会回复你"></textarea>
+            </div>
+            <div class="comment_validator">
+                <input type="text" placeholder="验证码" class="comment_code">
+            </div>
+            <button @click="handleSubmit">提交</button>
+        </div>
     </div>
     <div class="content-right">
         <div class="right-module" id="randomTag">
