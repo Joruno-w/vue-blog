@@ -10,6 +10,12 @@ app.post('/editBlog',loader.get('/editBlog'));
 app.get('/queryBlogById',loader.get('/queryBlogById'));
 app.get('/addComment',loader.get('/addComment'));
 app.get('/queryRandomCode',loader.get('/queryRandomCode'));
+app.get('/queryCommentByBlogId',loader.get('/queryCommentByBlogId'));
+app.get('/queryAllBlog',loader.get('/queryAllBlog'));
+app.get('/queryRandomTag',loader.get('/queryRandomTag'));
+app.get('/queryHotBlog',loader.get('/queryHotBlog'));
+app.get('/queryNewComments',loader.get('/queryNewComments'));
+app.get('/queryByTag',loader.get('/queryByTag'));
 app.listen(config.port,()=>{
     console.log('服务器已启动！');
 });

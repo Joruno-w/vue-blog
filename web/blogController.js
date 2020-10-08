@@ -3,10 +3,29 @@ const url = require('url');
 const blogDao = require('../dao/blogDao');
 const tagsDao = require('../dao/tagsDao');
 const tag_blog_mapping = require('../dao/blogTagMappingDao');
+
+async function queryHotBlog(req,res){
+    const params = url.parse(req.url,true).query;
+    blogDao.queryHotBlog(parseInt(params.limit)).then(result=>{
+        res.status(200).send(result);
+    });
+}
+
+path.set('/queryHotBlog',queryHotBlog);
+
+async function queryAllBlog(req,res){
+    blogDao.queryAllBlog().then(result=>{
+        res.status(200).send(result);
+    });
+}
+
+path.set('/queryAllBlog',queryAllBlog);
+
 async function queryBlogById(req,res){
     const params = url.parse(req.url,true).query;
     blogDao.queryBlogById(parseInt(params.bid)).then(result=>{
         res.status(200).send(result);
+        blogDao.addViews(parseInt(params.bid));
     });
 }
 

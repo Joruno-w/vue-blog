@@ -105,4 +105,31 @@
     opacity: 1;
 }
 
+.blog_comment{
+    width: 95%;
+    margin-top:20px;
+}
+
+.blog_comment .comment_item{
+    width: 100%;
+    background-color:#d9edf7;
+    border-radius: 8px;
+    border: 1px dashed #bce8f1;
+    color: #31708f;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+
+.blog_comment .comment_item img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.blog_comment .comment_item p{
+    margin-top: 5px;
+}
+
 

@@ -4,14 +4,24 @@ const every_day_vm = new Vue({
         content: ''
     },
     created() {
-        axios.get('/queryEveryDay').then(res=>{
+        axios.get('/queryEveryDay').then(res => {
             this.content = res.data[0].content;
-        }).catch(res=>{
+        }).catch(res => {
             console.log('error');
         })
     }
 });
-
+function parseObj(ele) {
+    const obj = {};
+    obj.title = ele.title;
+    obj.tags = ele.tags;
+    obj.scan = ele.views;
+    obj.publishDate = new Date(ele.createdAt).toLocaleDateString().replace(/\//g,'-');
+    obj.content = ele.content;
+    obj.id = ele.id;
+    obj.link = '/blog_detail.html?bid=' + ele.id;
+    return obj;
+}
 const articleVm = new Vue({
     el: '#articleList',
     data: {
@@ -32,38 +42,67 @@ const articleVm = new Vue({
             }
         ]
     },
-    methods:{
-        switchTo(page){
+    methods: {
+        switchTo(page) {
             this.current = page;
-            this.getPage(this.current,this.limit);
+            this.getPage(this.current, this.limit);
         },
-        getPage(page,limit){
-            axios.get('/queryBlogByPage',{
-                params: {
-                    page,
-                    limit
+        getPage(page, limit) {
+            const paramsStr = location.search.includes('?') ? location.search.substring(1).split('&') : '';
+            let tag = '';
+            if (paramsStr !== '') {
+                for (let i = 0; i < paramsStr.length; i++) {
+                    if (paramsStr[i].split("=")[0] === 'tag') {
+                        try {
+                            tag = paramsStr[i].split("=")[1];
+                        } catch {
+                            console.log('出错了！');
+                        }
+                    }
                 }
-            }).then(res=>{
-                const result = res.data;
-                const list = [];
-                for (let i = 0;i < result.length;i ++){
-                    const obj = {};
-                    obj.title = result[i].title;
-                    obj.tags = result[i].tags;
-                    obj.scan = result[i].views;
-                    obj.publishDate = new Date(result[i].createdAt).toLocaleString().split(" ")[0].replace(/\//g,'-');
-                    obj.content = result[i].content;
-                    obj.id = result[i].id;
-                    obj.link = '/blog_detail.html?bid=' + result[i].id;
-                    list.push(obj);
-                }
-                this.articleList = list;
-            }).catch(err=>{
-                console.log(err);
-            });
-            this.pageNumList = this.generatePager();
+            }
+            if (tag == ''){
+                axios.get('/queryBlogByPage', {
+                    params: {
+                        page,
+                        limit,
+                    }
+                }).then(res => {
+                    const result = res.data;
+                    const list = [];
+                    for (let i = 0; i < result.length; i++) {
+                        list.push(parseObj(result[i]));
+                    }
+                    this.articleList = list;
+                    this.pageNumList = this.generatePager();
+                }).catch(err => {
+                    console.log(err);
+                });
+            }else{
+                axios.get('/queryByTag',{
+                    params: {
+                        page,
+                        limit,
+                        tag,
+                    }
+                }).then(res=>{
+                    const result = res.data;
+                    if (Array.isArray(result)){
+                        const list = [];
+                        for (let i = 0; i < result.length; i++) {
+                            list.push(parseObj(result[i]));
+                        }
+                        this.articleList = list;
+                        this.pageNumList = this.generatePager();
+                    }else{
+                        this.articleList = [parseObj(result)];
+                    }
+                }).catch(err=>{
+                    console.log(err);
+                })
+            }
         },
-        generatePager(){
+        generatePager() {
             const result = [];
             const page = this.current;
             const totalPage = this.count;
@@ -72,7 +111,7 @@ const articleVm = new Vue({
                 text: '首页',
                 page: 1
             });
-            if (page > 2){
+            if (page > 2) {
                 result.push({
                     text: page - 2,
                     page: page - 2
@@ -88,13 +127,13 @@ const articleVm = new Vue({
                 text: page,
                 page
             });
-            if (this.current + 1 <= parseInt((totalPage + pageSize - 1)/ pageSize)){
+            if (this.current + 1 <= parseInt((totalPage + pageSize - 1) / pageSize)) {
                 result.push({
                     text: page + 1,
                     page: page + 1
                 });
             }
-            if (this.current + 2 <= parseInt((totalPage + pageSize - 1)/ pageSize)){
+            if (this.current + 2 <= parseInt((totalPage + pageSize - 1) / pageSize)) {
                 result.push({
                     text: page + 2,
                     page: page + 2
@@ -102,13 +141,13 @@ const articleVm = new Vue({
             }
             result.push({
                 text: '尾页',
-                page: parseInt((totalPage + pageSize - 1)/ pageSize)
+                page: parseInt((totalPage + pageSize - 1) / pageSize)
             });
             return result;
         }
     },
     created() {
-        this.getPage(this.current,this.limit);
+        this.getPage(this.current, this.limit);
     }
 });
 
@@ -132,151 +171,141 @@ const randomTagVm = new Vue({
         }
     },
     created() {
-
+        axios.get('/queryRandomTag').then(res => {
+            let result = [];
+            for (let i = 0; i < res.data.length; i++) {
+                result.push(res.data[i].tag);
+            }
+            result.sort(() => Math.random() - .5);
+            this.tags = result;
+        }).catch(err => {
+            console.log(err);
+        });
     }
 });
 
 const hotVm = new Vue({
     el: '#hot',
     data: {
-        hots: [
-            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },
-            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },
-            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },
-            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },
-            {
-                title: '使用码云git的webhook实现生产环境代',
-                link: 'http://www.baidu.com'
-            },
-        ]
+        hots: []
     },
     created() {
-
+        axios.get('/queryHotBlog', {
+            params: {
+                limit: 3
+            }
+        }).then(res => {
+            const result = [];
+            for (let i = 0; i < res.data.length; i++) {
+                const temp = {};
+                temp.title = res.data[i].title;
+                temp.link = `/blog_detail.html?bid=${res.data[i].id}`;
+                result.push(temp);
+            }
+            this.hots = result;
+        }).catch(err => {
+            console.log(err);
+        })
     }
 });
 
 
 const commentVm = new Vue({
-   el: '#comment',
-   data: {
-       comments: [
-           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           },
-           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           },           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           },
-           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           },
-           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           },
-           {
-               name: '华云云服务器',
-               date: '[1个月前]',
-               discuss: '可惜了，来晚了，不然可以聊聊服务器的'
-           }
-       ]
-   }
+    el: '#comment',
+    data: {
+        comments: []
+    },
+    created() {
+        axios.get('/queryNewComments',{
+            params: {
+                limit: 6
+            }
+        }).then(res=>{
+            const result = [];
+            for (let i = 0;i < res.data.length;i ++){
+                const ele = res.data[i];
+                const temp = {};
+                temp.name = ele.userName;
+                temp.date = new Date(ele.createdAt).toLocaleDateString().replace(/\//g,'-');
+                temp.discuss = ele.comments;
+                result.push(temp);
+            }
+            this.comments = result;
+        }).catch(err=>{
+            console.log(err);
+        })
+    }
 });
 
 const youlianVm = new Vue({
-   el: '#youlian',
-   data: {
-       youlianList: [
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           },
-           {
-               link: 'http://www.baidu.com',
-               content: '挨踢茶馆'
-           }
-       ]
-   }
+    el: '#youlian',
+    data: {
+        youlianList: [
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            },
+            {
+                link: 'http://www.baidu.com',
+                content: '挨踢茶馆'
+            }
+        ]
+    }
 });
 

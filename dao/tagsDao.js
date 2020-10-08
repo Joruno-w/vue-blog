@@ -17,7 +17,13 @@ async function queryTag(tag) {
 }
 
 
+async function queryAllTags(){
+    return await tags.findAll();
+}
+
+
 module.exports = {
     insertTag,
-    queryTag
+    queryTag,
+    queryAllTags
 }

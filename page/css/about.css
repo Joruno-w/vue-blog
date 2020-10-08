@@ -9,8 +9,6 @@
     padding: 10px;
 }
 
-
-
 .about-msg h3{
     height: 50px;
     line-height: 50px;
@@ -46,6 +44,94 @@
 
 .messages .message-content p{
     margin-top: 5px;
+}
+
+.send_comment{
+    margin-top: 30px;
+    width: 95%;
+    text-align: left;
+    padding: 10px 15px;
+    box-shadow: 3px 4px 3px #888888;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.comment_title{
+    margin-bottom: 10px;
+}
+
+.comment_name{
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    transition: all .3s;
+    border: 1px solid #ccc;
+}
+
+.comment_email{
+    width: 350px;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    border-radius: 5px;
+    transition: all .3s;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.send_comment input,.send_comment textarea,.send_comment button{
+    outline: none;
+}
+
+.send_comment input:focus,.send_comment textarea:focus{
+    border-color: #0088ef;
+    box-shadow: 0 0 1px #0088ef;
+}
+
+.comment_content textarea{
+    width: 600px;
+    height: 75px;
+    padding: 5px 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    transition: all .3s;
+}
+
+.comment_validator input{
+    width: 215px;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    transition: all .3s;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.comment_validator span{
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 7px;
+    vertical-align: middle;
+}
+
+.send_comment button{
+    width: 50px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #ccc;
+    opacity: .7;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.send_comment button:hover{
+    opacity: 1;
 }
 
 

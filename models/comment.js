@@ -1,6 +1,6 @@
 const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
-const comment = sequelize.define('comment',{
+const comment = sequelize.define('comment', {
     blogId: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -8,6 +8,11 @@ const comment = sequelize.define('comment',{
     parent: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    parentName: {
+        type: DataTypes.STRING(64),
+        allowNull: true,
+        defaultValue: '0'
     },
     userName: {
         type: DataTypes.STRING(64),
@@ -21,7 +26,7 @@ const comment = sequelize.define('comment',{
         type: DataTypes.STRING(128),
         allowNull: false
     }
-},{
+}, {
     indexes: [
         {
             fields: ['blogId'],

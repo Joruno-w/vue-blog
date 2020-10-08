@@ -44,10 +44,21 @@
             <div class="blog_msg">作者: wsl 标签: {{tags}} 发布于: {{publishDate}} 浏览:({{views}})</div>
             <div class="blog_content" v-html="content"></div>
         </div>
+        <div class="blog_comment" id="blog_comment">
+            <div class="comment_title">评论：目前有{{total}}条评论</div>
+            <div class="comment_item" v-for="(item,i) in commentList" :key="i">
+                <img src="https://www.zh30.com/avatar/default.jpg" alt="用户评论头像" class="img-circle">
+                <strong>{{item.userName}}</strong>: <span>{{item.options}}发表于 {{item.publishDate}} <a href="#send_comment" @click="reply(item.id,item.userName)" >[回复]</a></span>
+                <p>
+                    {{item.comments}}
+                </p>
+            </div>
+        </div>
         <div class="send_comment" id="send_comment">
             <div class="comment_title">发表评论</div>
             <div class="comment_msg">
-                <input type="hidden" value="-1" class="comment_hidden">
+                <input type="hidden" value="-1" class="comment_reply">
+                <input type="hidden" value="0" class="comment_reply_name">
                 <input type="text" placeholder="昵称" class="comment_name">
                 <input type="email" placeholder="邮箱" class="comment_email">
             </div>

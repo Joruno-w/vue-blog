@@ -8,6 +8,17 @@ async function insertTagBlogMapping(tagId,blogId) {
     return obj.toJSON();
 }
 
+async function queryByTag(tagId,page,limit){
+    return await tag_blog_mapping.findAll({
+        offset: page - 1,
+        limit: +limit,
+        where: {
+            tagId
+        }
+    });
+}
+
 module.exports = {
-    insertTagBlogMapping
+    insertTagBlogMapping,
+    queryByTag
 }

@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/about.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script src="./js/axios.js"></script>
 </head>
 <body>
 <header class="header">
@@ -65,39 +67,34 @@
                 </div>
             </div>
         </div>
-        <div class="messages">
+        <div class="messages" id="messages">
             <div class="message-title">
-                关于：目前有78 条留言
+                留言：目前有{{total}}条留言
             </div>
-            <div class="message-content">
+            <div class="message-content" v-for="(item,i) in commentList" :key="i">
                 <img src="https://www.zh30.com/avatar/default.jpg" alt="用户评论头像" class="img-circle">
-                <strong>pittle</strong>: <span>发表于 2020年08月09日 16:24[回复]</span>
+                <strong>{{item.userName}}</strong>:<span>{{item.options}}发表于 {{item.publishDate}} <a href="#send_comment" @click="reply(item.id,item.userName)">[回复]</a></span>
                 <p>
-                    哥，你这个博客是不是用php写的呀？
+                    {{item.comments}}
                 </p>
             </div>
-            <div class="message-content">
-                <img src="https://www.zh30.com/avatar/default.jpg" alt="用户评论头像" class="img-circle">
-                <strong>pittle</strong>: <span>发表于 2020年08月09日 16:24[回复]</span>
-                <p>
-                    哥，你这个博客是不是用php写的呀？
-                </p>
+        </div>
+        <div class="send_comment" id="send_comment">
+            <div class="comment_title">发表评论</div>
+            <div class="comment_msg">
+                <input type="hidden" value="-1" class="comment_reply">
+                <input type="hidden" value="0" class="comment_reply_name">
+                <input type="text" placeholder="昵称" class="comment_name">
+                <input type="email" placeholder="邮箱" class="comment_email">
             </div>
-            <div class="message-content">
-                <img src="https://www.zh30.com/avatar/default.jpg" alt="用户评论头像" class="img-circle">
-                <strong>pittle</strong>: <span>发表于 2020年08月09日 16:24[回复]</span>
-                <p>
-                    哥，你这个博客是不是用php写的呀？
-                </p>
+            <div class="comment_content">
+                <textarea placeholder="无意义内容我可能不会回复你"></textarea>
             </div>
-            <div class="message-content">
-                <img src="https://www.zh30.com/avatar/default.jpg" alt="用户评论头像" class="img-circle">
-                <strong>pittle</strong>: <span>发表于 2020年08月09日 16:24[回复]</span>
-                <p>
-                    哥，你这个博客是不是用php写的呀？
-                </p>
+            <div class="comment_validator">
+                <input type="text" placeholder="验证码" class="comment_code">
+                <span v-html="vcode" @click="handleChangeCode"></span>
             </div>
-
+            <button @click="handleSubmit">提交</button>
         </div>
     </div>
     <div class="content-right">
@@ -334,5 +331,6 @@
         Copyright © 2010-2020 我的个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计
     </div>
 </footer>
+<script src="./js/about.js"></script>
 </body>
 </html>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="./css/sitemap.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script src="./js/axios.js"></script>
 </head>
 <body>
     <h3>我的个人博客's SiteMap</h3>
@@ -12,34 +14,14 @@
         >>
         <a href="./sitemap.html">站点地图</a>
     </div>
-    <div class="catalog">
+    <div class="catalog" id="sitemap">
         <div>最新文章</div>
         <ul>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
-            </li>
-            <li>
-                <a href="/">服务器迁移，博客已无缝切换</a>
+            <li v-for="(item,i) in titles" :key="i">
+                <a :href="item.link">{{item.title}}</a>
             </li>
         </ul>
     </div>
+    <script src="./js/sitemap.js"></script>
 </body>
 </html>
